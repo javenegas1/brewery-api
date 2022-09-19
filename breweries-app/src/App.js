@@ -1,7 +1,9 @@
 import './App.css';
-import React, { useState, useEffect } from 'react'
-import { Route, Routes, Outlet } from "react-router-dom";
-import Random from './components/Random';
+import React, { useState, useEffect } from 'react' //for testing use state before creating component
+import { Route, Routes } from "react-router-dom";
+import Home from './components/Home';
+import NavBar from './components/NavBar';
+import BreweryPage from './components/BreweryPage';
 
 function App() {
 
@@ -9,7 +11,13 @@ function App() {
 
   return (
     <div className="App">
-      <Random URL={URL} />
+      <div>
+        <NavBar URL={URL}/>
+      </div>
+      <Routes>
+        <Route path='/' element={<Home URL={URL}/>} />
+        <Route path='/:id' element={<BreweryPage URL={URL}/>} />
+      </Routes>
     </div>
   );
 }
