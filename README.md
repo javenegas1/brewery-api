@@ -5,13 +5,6 @@ The website will use a brewery api that has access to breweries across the count
 Link to the API you plan to use
 https://www.openbrewerydb.org/documentation
 
-
-Visual of your component hierarchy
-Screen Shot 2022-09-16 at 3 16 43 PM
-
-Wire Frames
-Screen Shot 2022-09-16 at 3 26 23 PM
-
 User Stories
 I would like users to be able to retrieve information relevant to a location they want to visit based on the location they are at. I would also want users to be able to share feedback similar to yelp reviews.
 
