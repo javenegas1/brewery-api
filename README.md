@@ -5,26 +5,7 @@ The website will use a brewery api that has access to breweries across the count
 Link to the API you plan to use
 https://www.openbrewerydb.org/documentation
 
-Example data response you plan to use
-{
-        "id": "barrel-dog-brewing-evergreen",
-        "name": "Barrel Dog Brewing",
-        "brewery_type": "micro",
-        "street": null,
-        "address_2": null,
-        "address_3": null,
-        "city": "Evergreen",
-        "state": "Colorado",
-        "county_province": null,
-        "postal_code": "80439",
-        "country": "United States",
-        "longitude": "-105.321458",
-        "latitude": "39.6361637",
-        "phone": "5599176846",
-        "website_url": null,
-        "updated_at": "2022-08-20T02:56:08.975Z",
-        "created_at": "2022-08-20T02:56:08.975Z"
-    },
+
 Visual of your component hierarchy
 Screen Shot 2022-09-16 at 3 16 43 PM
 
@@ -37,6 +18,7 @@ I would like users to be able to retrieve information relevant to a location the
 MVP Goals
 Backend Express app that retrieves information from the brewery API
 Frontend React app that displays information about each individual brewery with routes categorized by location
-Stretch Goals (if applicable)
+
+Stretch Goals
 Include backend way for users to log in and register profiles saved in database (MongoDB or Passport)
 they should be able to create edit and delete comments they post, and update their personal list of liked breweries
