@@ -25,13 +25,15 @@ export default function NavBar(props) {
             const breweriesState = await resState.json()
             const breweriesZipCode = await resZipCode.json()
 
-            console.log(breweriesCity)
-            console.log(breweriesState)
-            console.log(breweriesZipCode)
+            let finalSearch = breweriesCity.concat(breweriesState, breweriesZipCode)
+            if(finalSearch.length > 0){
+                console.log(finalSearch)
 
-            // let searchArr=[]
+            } else {
+                console.log('no breweries found')
+            }
 
-            setSearchBrews(breweriesCity)
+            setSearchBrews(finalSearch)
           }
     } catch (error) {
         console.log(error)
