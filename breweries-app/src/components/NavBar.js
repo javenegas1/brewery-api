@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function NavBar(props) {
   //search function
@@ -8,6 +8,7 @@ export default function NavBar(props) {
   //else 'no results found'
 
   const [searchBrews, setSearchBrews] = useState('');
+  let navigate = useNavigate()
 
   const handleChange = (event) => {
     setSearchBrews(event.target.value);
@@ -26,14 +27,22 @@ export default function NavBar(props) {
             const breweriesZipCode = await resZipCode.json()
 
             let finalSearch = breweriesCity.concat(breweriesState, breweriesZipCode)
+
+            //no breweries found test case ---->
+            // if(finalSearch.length > 0){
+            //     console.log(finalSearch)
+
+            // } else {
+            //     console.log('no breweries found')
+            // }
+
             if(finalSearch.length > 0){
-                console.log(finalSearch)
+                props.setSearchBrews(finalSearch)
+                navigate('/search')
 
             } else {
-                console.log('no breweries found')
+                navigate('/no_results')
             }
-
-            setSearchBrews(finalSearch)
           }
     } catch (error) {
         console.log(error)
@@ -47,9 +56,9 @@ export default function NavBar(props) {
                 <li>Home</li>
             </Link>
             <li>
-                <form onSubmit={handleSubmit} >
-                <input type='text' placeholder='City, ZipCode' name='search' onChange={handleChange}></input>
-                <button  type='submit'>Search</button>
+                <form onSubmit={handleSubmit}  >
+                    <input type='text' placeholder='State, City, ZipCode' name='search' onChange={handleChange}></input>
+                    <button type='submit' hidden>Search</button>
                 </form>
             </li>
         </ul>
