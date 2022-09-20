@@ -55,6 +55,9 @@ export default function NavBar(props) {
             <Link to='/'>
                 <li>Home</li>
             </Link>
+            <Link to='/register'>
+                <li>Register</li>
+            </Link>
             <li>
                 <form onSubmit={handleSubmit}  >
                     <input type='text' placeholder='State, City, ZipCode' name='search' onChange={handleChange}></input>
