@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcrypt')
 
-const { User } = require("../models");
+const User = require("../models/User");
 const {createUserToken} = require('../middleware/auth')
 
 //register

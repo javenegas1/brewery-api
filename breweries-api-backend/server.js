@@ -1,5 +1,5 @@
 require("dotenv").config();
-require('./config/db.connection')
+require('./db.connection')
 
 const express = require("express");
 const cors = require("cors")
@@ -20,4 +20,4 @@ app.get("/", (req, res) => {
     res.send("hello world");
 });
 
-app.listen(4000, () => console.log(`listening on PORT ${PORT}`));
+app.listen(4000, () => console.log(`listening on PORT 4000`));

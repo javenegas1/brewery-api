@@ -27,5 +27,5 @@ const userSchema = new mongoose.Schema({
         
     }
 })
-ß
+
 module.exports = mongoose.model('User' , userSchema)
