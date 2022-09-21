@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 
 export default function Register({handleRegister}) {
 
-  const [newUser, setNewUser] = useState({ username: "", password: "" });
+  const [newUser, setNewUser] = useState({ username: "", email: "", password: "" });
   const navigate = useNavigate()
 
   function handleChange(e) {
@@ -18,8 +18,8 @@ export default function Register({handleRegister}) {
       navigate('/', {replace: true})
     }catch(err){
       console.log(err)
-    //   navigate('/login', {replace: true})
-      navigate('/')
+      navigate('/login', {replace: true})
+    //   navigate('/')
     }
   }
 
