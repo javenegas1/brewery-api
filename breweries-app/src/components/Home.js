@@ -25,7 +25,7 @@ export default function Home(props) {
       <div>
         <div>
             <Link to={`/${randomBrew[0].id}`} >
-            <h2>random brewery</h2>
+            <h2>Brewery of the Day</h2>
             <ul>
                 <li>{randomBrew[0].name}</li>
                 <li>{randomBrew[0].city}</li>

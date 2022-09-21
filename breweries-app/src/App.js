@@ -55,16 +55,11 @@ function App() {
       const authUser = await user.json()
       console.log(authUser)
 
-      // sets local storage
       setUserToken(authUser.token);
-      // put the returned user object in state
       setCurrUser(authUser.user);
-      // adds a boolean cast of the responses isLoggedIn prop
       setAuthState(authUser.isLoggedIn);
     } catch (error){
-        // sets local storage back
         clearUserToken();
-        // put the returned user object in state back to null
         setCurrUser(null);
         setAuthState(false);
       console.log(error)
@@ -89,7 +84,7 @@ function App() {
         <Route path='/' element={<Home URL={URL}/>} />
         <Route path='/search' element={<Search searchBrews={searchBrews} setSearchBrews={setSearchBrews}/>} />
         <Route path='/no_results' element={<NoResults />} />
-        <Route path='/:id' element={<BreweryPage URL={URL}/>} />
+        <Route path='/:id' element={<BreweryPage URL={URL} backendURL={backendURL} currUser={currUser}/>} />
         <Route path='/register' element={<Register handleRegister={handleRegister}/>} />
         <Route path='/login' element={<Login handleLogin={handleLogin}/>} />
       </Routes>
