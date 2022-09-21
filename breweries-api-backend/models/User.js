@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
-    }
+    },
+    favorites: [String]
 }, {
     timestamps: true,
     toJSON: {
