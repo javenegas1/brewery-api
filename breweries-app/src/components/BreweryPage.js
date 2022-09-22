@@ -83,8 +83,8 @@ export default function BreweryPage(props) {
     <div>
         <ul>
             <li>{thisBrewery.name}</li>
-            <li>{thisBrewery.city}</li>
-            <li>{thisBrewery.country}</li>
+            <li>{thisBrewery.street}</li>
+            <li>{thisBrewery.city}, {thisBrewery.state}</li>
             <li>{thisBrewery.website_url}</li>
             <li>{thisBrewery.phone}</li>
         </ul>
