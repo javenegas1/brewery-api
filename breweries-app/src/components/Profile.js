@@ -13,7 +13,7 @@ export default function Profile(props) {
                   "Authorization": `bearer ${getUserToken()}`
                 }
               }
-            const res = await fetch(props.backendURL+'/main/profile')
+            const res = await fetch(props.backendURL+'/main/profile', options)
             const thisProfile = await res.json()
             console.log(thisProfile)
             setProfile(thisProfile)

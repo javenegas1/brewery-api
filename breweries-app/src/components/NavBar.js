@@ -43,10 +43,14 @@ export default function NavBar(props) {
   if(props.authState){
     return (
         <div>
-            <ul className='navbar'>
+            <ul className='navbar navbar-expand-lg bg-light'>
     
                 <Link to='/'>
                     <li className='nav'>Home</li>
+                </Link>
+
+                <Link to='/profile'>
+                    <li className='nav'>Profile</li>
                 </Link>
     
                 <Link onClick={props.handleLogout} to='/login'>

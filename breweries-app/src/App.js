@@ -95,6 +95,8 @@ function App() {
         <Route path='/:id' element={<BreweryPage URL={URL} backendURL={backendURL} currUser={currUser}/>} />
         <Route path='/register' element={<Register handleRegister={handleRegister}/>} />
         <Route path='/login' element={<Login handleLogin={handleLogin}/>} />
+        <Route path='/profile' element={<Profile currUser={currUser} authState={authState}/>} />
+
 
       </Routes>
     </div>
