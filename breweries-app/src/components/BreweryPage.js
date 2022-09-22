@@ -102,7 +102,23 @@ export default function BreweryPage(props) {
   
   useEffect(() => {getBreweryComments()}, []);
 
-  if (!thisBrewery) {
+  //------------------------------------------------------>
+  //delete coments
+  const handleDeleteComment = async (commentId) => {
+    try{
+      const options = {
+        method: "DELETE",
+        headers: { Authorization: `bearer ${getUserToken()}` },
+      };
+      const res = await fetch(props.backendURL+`/main/comment/${commentId}`, options)
+      const deletedComment = await res.json()
+      console.log(deletedComment)
+    } catch(error){
+      console.log(error)
+    }
+  }
+
+  if (!thisBrewery || !breweryComments) {
     return <p>Loading ...</p>
   }
   
@@ -132,9 +148,12 @@ export default function BreweryPage(props) {
       <h3>Comments Section</h3>
         {breweryComments.map((oneComment) => {
             return(
+                  <div>
                     <li>{oneComment.comment} <span>by {oneComment.username}</span></li>
+                    {/* <button onClick={handleDeleteComment(oneComment._id)} >Delete Comment</button> */}
+                  </div>
             )
-        })}
+        }).reverse()}
       </div>
 
     </div>
