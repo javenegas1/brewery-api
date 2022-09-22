@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, json } from 'react-router-dom'
 import { getUserToken } from '../storage/authToken'
 
 export default function BreweryPage(props) {
@@ -8,6 +8,7 @@ export default function BreweryPage(props) {
   const params = useParams()
   const navigate = useNavigate()
 
+  //------------------------------------------------------>
   //fetch individual brewery information
   const getBrewery = async () => {
     try{
@@ -22,6 +23,7 @@ export default function BreweryPage(props) {
 
   useEffect(() => {getBrewery()}, []);
 
+  //------------------------------------------------------>
   //send brewery into favorites array for user
   async function handleFavorites(e) {
     e.preventDefault();
@@ -45,6 +47,7 @@ export default function BreweryPage(props) {
     }
   }
 
+  //------------------------------------------------------>
   //form functions for comments section
   
   const[newComment, setNewComment] = useState({ brewery: params.id, comment:'' })
@@ -77,6 +80,27 @@ export default function BreweryPage(props) {
       navigate('/login')
     }
   }
+    //------------------------------------------------------>
+    //fetch comments made on this brewery page
+    const [breweryComments, setBreweryComments] = useState([])
+    const paramId = params.id
+    const getBreweryComments = async () => {
+
+      try{
+          const options = { 
+              method: 'GET',
+            }
+          const res = await fetch(props.backendURL+`/main/brewery-comments/${paramId}`, options)
+          console.log(res)
+          const commentsList = await res.json()
+          console.log(commentsList)
+          setBreweryComments(commentsList)
+      } catch (error) {
+          console.log(error)
+      }
+    }
+  
+  useEffect(() => {getBreweryComments()}, []);
 
   if (!thisBrewery) {
     return <p>Loading ...</p>
@@ -103,6 +127,15 @@ export default function BreweryPage(props) {
         />
         <button onClick={handleComment} >Comment</button>
         </div>
+
+      <div>
+      <h3>Comments Section</h3>
+        {breweryComments.map((oneComment) => {
+            return(
+                    <li>{oneComment.comment} <span>by {oneComment.username}</span></li>
+            )
+        })}
+      </div>
 
     </div>
   )
