@@ -5,9 +5,8 @@ import { getUserToken } from '../storage/authToken'
 export default function BreweryPage(props) {
 
   const[thisBrewery, setThisBrewery] = useState(null)
-  const[newComment, setNewComment] = useState({username: '', comment: '', brewery: ''})
   const params = useParams()
-  
+
   //fetch individual brewery information
   const getBrewery = async () => {
     try{
@@ -46,34 +45,36 @@ export default function BreweryPage(props) {
   }
 
   //form functions for comments section
+  const actualUserName = props.currUser.username
+  const[newComment, setNewComment] = useState({username: actualUserName, brewery: params.id, comment:''})
 
-  // function handleChange(e) {
-  //   setNewComment({ ...newComment, [e.target.comment]: e.target.value });
-  // }
+  function handleChange(e) {
+    setNewComment({...newComment, [e.target.name]: e.target.value});
+  }
 
-  // async function handleComment(e) {
-  //   e.preventDefault();
-  //   let info = {
-  //     comment: newComment,
-  //     brewery: params.id.toString(),
-  //   }
-  //   try {
-  //     const options = {
-  //       method: 'POST',
-  //       body: JSON.stringify(info),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         "Authorization": `bearer ${getUserToken()}`
-  //       }
-  //     }
-  //     const response = await fetch(props.backendURL+'/main/comment', options)
-  //     const parsedResponse = await response.json()
-  //     console.log(parsedResponse)
-  //     console.log(newComment)
-  //   } catch(error){
-  //     console.log(error)
-  //   }
-  // }
+  async function handleComment(e) {
+    e.preventDefault();
+    let info = {
+      comment: newComment,
+    }
+    try {
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(info),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `bearer ${getUserToken()}`
+        }
+      }
+      const response = await fetch(props.backendURL+'/main/comment', options)
+      const parsedResponse = await response.json()
+      console.log(parsedResponse)
+      console.log(newComment)
+      setNewComment({username: actualUserName, brewery: params.id, comment:''})
+    } catch(error){
+      console.log(error)
+    }
+  }
 
   if (!thisBrewery) {
     return <p>Loading ...</p>
@@ -91,7 +92,14 @@ export default function BreweryPage(props) {
         <button onClick={handleFavorites}>Favorite</button>
 
         <div>
-          form for comments
+          <input
+            type="text"
+            name="comment"
+            placeholder="say something..."
+            onChange={handleChange}
+            value={newComment.comment}
+        />
+        <button onClick={handleComment} >Comment</button>
         </div>
 
     </div>
