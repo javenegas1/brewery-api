@@ -18,6 +18,10 @@ router.get("/profile", requireToken, async (req, res) => {
         const thisUser = await User.findOne({username: req.user.username})
         let jsonUser = JSON.stringify(thisUser)
         console.log(jsonUser)
+
+        const userComments = await Comment.find({username: req.user.username})
+        console.log(userComments)
+
         res.json(thisUser)
     } catch (error){
         res.status(400).json(error)
@@ -68,4 +72,15 @@ router.post('/comment', requireToken, async (req, res) => {
     }
 })
 
+//retrieve comments for one user
+router.get("/user-comments", requireToken, async (req, res) => {
+    try{
+        const userComments = await Comment.find({username: req.user.username})
+        console.log(userComments)
+
+        res.json(userComments)
+    } catch (error){
+        res.status(400).json(error)
+    }
+  });
 module.exports = router;
