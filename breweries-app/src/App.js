@@ -10,6 +10,7 @@ import Search from './components/Search';
 import NoResults from './components/NoResults';
 import Register from './components/Register';
 import Login from './components/Login';
+import Profile from './components/Profile';
 
 function App() {
 
@@ -87,6 +88,7 @@ function App() {
         <Route path='/:id' element={<BreweryPage URL={URL} backendURL={backendURL} currUser={currUser}/>} />
         <Route path='/register' element={<Register handleRegister={handleRegister}/>} />
         <Route path='/login' element={<Login handleLogin={handleLogin}/>} />
+
       </Routes>
     </div>
   );
