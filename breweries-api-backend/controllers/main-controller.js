@@ -20,7 +20,9 @@ const Comment = require("../models/Comment")
 router.get("/profile", requireToken, async (req, res) => {
     try{
         const thisUser = await User.findOne({username: req.user.username})
-        console.log(thisUser)
+        // console.log(thisUser)
+        let jsonUser = JSON.stringify(thisUser)
+        console.log(jsonUser)
         res.json(thisUser)
     } catch (error){
         res.status(400).json(error)
