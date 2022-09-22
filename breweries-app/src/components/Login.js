@@ -14,7 +14,7 @@ export default function Login({handleLogin}) {
       e.preventDefault();
       try {
         const authResponse = await handleLogin(returningUser)
-        console.log(authResponse)
+        // console.log(authResponse)
         navigate('/', {replace: true})
       }catch(err){
         console.log(err)

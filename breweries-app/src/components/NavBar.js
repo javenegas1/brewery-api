@@ -28,18 +28,10 @@ export default function NavBar(props) {
 
             let finalSearch = breweriesCity.concat(breweriesState, breweriesZipCode)
 
-            //no breweries found test case ---->
-            // if(finalSearch.length > 0){
-            //     console.log(finalSearch)
-
-            // } else {
-            //     console.log('no breweries found')
-            // }
-
+            //in case of no results
             if(finalSearch.length > 0){
                 props.setSearchBrews(finalSearch)
                 navigate('/search')
-
             } else {
                 navigate('/no_results')
             }
@@ -48,29 +40,55 @@ export default function NavBar(props) {
         console.log(error)
     }
   };
-
-  return (
-    <div>
-        <ul>
-            <Link to='/'>
-                <li>Home</li>
-            </Link>
-            <Link to='/register'>
-                <li>Register</li>
-            </Link>
-            <Link to='/login'>
-                <li>Login</li>
-            </Link>
-            <Link onClick={props.handleLogout} to='/login'>
-                <li>Logout</li>
-            </Link>
-            <li>
-                <form onSubmit={handleSubmit}  >
-                    <input type='text' placeholder='State, City, ZipCode' name='search' onChange={handleChange}></input>
-                    <button type='submit' hidden>Search</button>
-                </form>
-            </li>
-        </ul>
-    </div>
-  )
+  if(props.authState){
+    return (
+        <div>
+            <ul className='navbar'>
+    
+                <Link to='/'>
+                    <li className='nav'>Home</li>
+                </Link>
+    
+                <Link onClick={props.handleLogout} to='/login'>
+                    <li className='nav'>Logout</li>
+                </Link>
+    
+                <li className='nav' id='search'>
+                    <form onSubmit={handleSubmit}  >
+                        <input type='text' placeholder='State, City, ZipCode' name='search' onChange={handleChange}></input>
+                        <button type='submit' hidden>Search</button>
+                    </form>
+                </li>
+    
+            </ul>
+        </div>
+      )
+  } else {
+    return (
+        <div>
+            <ul className='navbar'>
+    
+                <Link to='/'>
+                    <li className='nav'>Home</li>
+                </Link>
+    
+                <Link to='/register'>
+                    <li className='nav'>Register</li>
+                </Link>
+    
+                <Link to='/login'>
+                    <li className='nav'>Login</li>
+                </Link>
+    
+                <li className='nav' id='search'>
+                    <form onSubmit={handleSubmit}  >
+                        <input type='text' placeholder='State, City, ZipCode' name='search' onChange={handleChange}></input>
+                        <button type='submit' hidden>Search</button>
+                    </form>
+                </li>
+    
+            </ul>
+        </div>
+      )
+  }
 }
