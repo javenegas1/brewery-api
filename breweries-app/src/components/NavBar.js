@@ -55,6 +55,15 @@ export default function NavBar(props) {
             <Link to='/'>
                 <li>Home</li>
             </Link>
+            <Link to='/register'>
+                <li>Register</li>
+            </Link>
+            <Link to='/login'>
+                <li>Login</li>
+            </Link>
+            <Link onClick={props.handleLogout} to='/login'>
+                <li>Logout</li>
+            </Link>
             <li>
                 <form onSubmit={handleSubmit}  >
                     <input type='text' placeholder='State, City, ZipCode' name='search' onChange={handleChange}></input>

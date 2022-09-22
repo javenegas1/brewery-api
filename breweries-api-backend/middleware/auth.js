@@ -27,18 +27,16 @@ const opts = {
 
 const verify = async (jwt_payload, done) => {
 		// In the callback we run our custom code. With the data extracted from
-	  // the token that we're passed as jwt_payload we'll have the user's id.
-	  // Using Mongoose's `.findById()` method, we find the user in our database
+	    // the token that we're passed as jwt_payload we'll have the user's id.
+	    // Using Mongoose's `.findById()` method, we find the user in our database
     try {
-				// To pass the user on to our route, we use the `done` method that
+			// To pass the user on to our route, we use the `done` method that
 		    // that was passed as part of the callback.  The first parameter of
 		    // done is an error, so we'll pass null for that argument and then
 		    // pass the user doc from Mongoose
         const user = await User.findById(jwt_payload.id)
         return done(null, user)
     }catch(err){
-				// If there was an error, we pass it to done so it is eventually handled
-		    // by error handlers in Express
        return done(err)
     }
 
@@ -61,7 +59,7 @@ const createUserToken = (req, user) => {
 	        error.statusCode = 422
 	        throw error
     }
-    return jwt.sign({id: user._id},secret,{expiresIn: 36000 })
+    return jwt.sign({id: user._id},secret,{expiresIn: 24000 })
 }
 
 module.exports = {

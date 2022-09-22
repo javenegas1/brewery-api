@@ -6,6 +6,7 @@ const cors = require("cors")
 const morgan = require("morgan")
 
 const userController = require('./controllers/auth-controller')
+const mainController = require('./controllers/main-controller')
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(morgan("dev")); 
 
 app.use('/auth', userController)
+app.use('/main', mainController)
 
 
 app.get("/", (req, res) => {
