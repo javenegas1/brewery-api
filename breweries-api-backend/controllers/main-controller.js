@@ -8,7 +8,6 @@ const User = require("../models/User");
 const Comment = require("../models/Comment")
 
 //comments
-    //difficulty with appending req.body from form on frontend to display as string comment on backend
     //page id should allow it to keep comments on page about brewery with fetch call
     //user id should allow matching users to realize CRUD operations on their comment
 
@@ -79,6 +78,19 @@ router.get("/user-comments", requireToken, async (req, res) => {
         console.log(userComments)
 
         res.json(userComments)
+    } catch (error){
+        res.status(400).json(error)
+    }
+  });
+
+//retrieve comments for one brewery
+router.get("/brewery-comments/:id", async (req, res) => {
+    try{
+        const breweryComments = await Comment.find({brewery: req.params.id})
+        console.log(breweryComments)
+        console.log(req.query)
+        console.log(req.params)
+        res.json(breweryComments)
     } catch (error){
         res.status(400).json(error)
     }
