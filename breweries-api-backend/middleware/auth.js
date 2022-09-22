@@ -8,13 +8,10 @@ const User = require('../models/User')
 const secret = process.env.JWT_SECRET || 'yolo unique secrets'
 
 const opts = {
-	    // How passport should find and extract the token from
-	  // the request.  We'll be sending it as a `bearer` token
-	  // when we make requests from our front end.
+	// How passport should find and extract the token from
+	// the request.  We'll be sending it as a `bearer` token
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-		// Any secret string to use that is unique to your app
-	  // We should store this in an environment variable so it
-	  // isn't ever pushed to GitHub!
+
       /*
       
       headers: {

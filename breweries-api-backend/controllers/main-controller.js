@@ -8,7 +8,6 @@ const User = require("../models/User");
 const Comment = require("../models/Comment")
 
 //comments
-    //page id should allow it to keep comments on page about brewery with fetch call
     //user id should allow matching users to realize CRUD operations on their comment
 
 //profile page
@@ -88,11 +87,23 @@ router.get("/brewery-comments/:id", async (req, res) => {
     try{
         const breweryComments = await Comment.find({brewery: req.params.id})
         console.log(breweryComments)
-        console.log(req.query)
-        console.log(req.params)
+        console.log(req.params.id)
         res.json(breweryComments)
     } catch (error){
         res.status(400).json(error)
     }
   });
+
+//edit and delete comments
+router.delete('/comment/:id', requireToken, async (req, res) => {
+    try{
+        const thisComment = await Comment.findById(req.params.id)
+        if(req.user.username == thisComment.username){
+            res.json(await Comment.findByIdAndDelete(req.params.id))
+        }
+    }catch (error) {
+        res.status(400).json(error)
+    }
+})
+
 module.exports = router;
