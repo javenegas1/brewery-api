@@ -55,9 +55,9 @@ router.post('/favorites', requireToken, async(req, res) => {
 router.post('/comment', requireToken, async (req, res) => {
     try{
         const thisUser = await User.findOne({username: req.user.username})
-        console.log(req.body)
+        // console.log(req.body)
         const newComment = await Comment.create({
-            username: req.body.comment.username,
+            username: thisUser.username,
             brewery: req.body.comment.brewery,
             comment: req.body.comment.comment
         })
