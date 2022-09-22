@@ -5,14 +5,10 @@ const router = express.Router();
 const { requireToken, handleValidateOwnership } = require("../middleware/auth");
 const { findById, find, findOneAndUpdate } = require("../models/User");
 const User = require("../models/User");
-
-//overrall, not understanding how to access current user with token on the frontend
-//and translate this to the backend where i can fulfill http requests
+const Comment = require("../models/Comment")
 
 //favorites
-    //receive response from front end in form of string that can be pushed into array
-    //string should be id || params.id (from the route) from frontend of brewery page
-    //favorites can then be mapped out similar to search page fetch call
+    //route favorites array to profile page
 
 //comments
     //most likely will be separate schema 
@@ -25,6 +21,19 @@ const User = require("../models/User");
     //user, location(brewery id), date, and small paragraph
     //individual brewery page can call from this DB to fetch matching id's and list 
     //events that fall under that brewery 
+
+//----------------------------------------------------------->
+//profile page
+// router.get("/profile", requireToken, async (req, res) => {
+//     try{
+//         const thisUser = await User.findOne({username: req.user.username})
+//         console.log(thisUser)
+//         res.json(thisUser)
+//     } catch (error){
+//         res.status(400).json(error)
+//     }
+//   });
+//----------------------------------------------------------->
 
 //favorite
 router.post('/favorites', requireToken, async(req, res) => {
@@ -49,6 +58,23 @@ router.post('/favorites', requireToken, async(req, res) => {
 
         res.status(200)
     } catch (error){
+        res.status(400).json(error)
+    }
+})
+
+//comment
+router.post('/comment', requireToken, async (req, res) => {
+    try{
+        const thisUser = await User.findOne({username: req.user.username})
+        const newComment = await Comment.create({
+            username: thisUser.username,
+            comment: req.body.comment,
+            brewery: req.body.brewery
+        })
+        console.log(thisUser)
+        console.log(newComment)
+        res.status(200)
+    } catch(error) {
         res.status(400).json(error)
     }
 })
