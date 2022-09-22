@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getUserToken } from '../storage/authToken'
 
 export default function BreweryPage(props) {
 
   const[thisBrewery, setThisBrewery] = useState(null)
   const params = useParams()
+  const navigate = useNavigate()
 
   //fetch individual brewery information
   const getBrewery = async () => {
@@ -45,8 +46,8 @@ export default function BreweryPage(props) {
   }
 
   //form functions for comments section
-  const actualUserName = props.currUser.username
-  const[newComment, setNewComment] = useState({username: actualUserName, brewery: params.id, comment:''})
+  
+  const[newComment, setNewComment] = useState({ brewery: params.id, comment:'' })
 
   function handleChange(e) {
     setNewComment({...newComment, [e.target.name]: e.target.value});
@@ -70,16 +71,17 @@ export default function BreweryPage(props) {
       const parsedResponse = await response.json()
       console.log(parsedResponse)
       console.log(newComment)
-      setNewComment({username: actualUserName, brewery: params.id, comment:''})
+      setNewComment({brewery: params.id, comment:''})
     } catch(error){
       console.log(error)
+      navigate('/login')
     }
   }
 
   if (!thisBrewery) {
     return <p>Loading ...</p>
   }
-
+  
   return (
     <div>
         <ul>
