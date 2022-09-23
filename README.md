@@ -18,9 +18,12 @@ Given that this is supposed to serve as a social media site, there are many rela
 # User Stories
 Users should be able to retrieve information relevant to a location they want to visit based on the location they are at. Users should also be able to share feedback similar to yelp reviews or simply leave comments under the individual brewery page.
 
-# Primary stack/libraries used
+# Primary stack/libraries Used
 Express - For backend routing and management of information received from frontend
+
 MongoDB - For management of user created profiles and comments
+
 React - For frontend ui/ux 
+
 Node - Base library used for connection between all components
 
