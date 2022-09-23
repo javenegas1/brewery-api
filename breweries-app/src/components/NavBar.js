@@ -1,6 +1,14 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from "react-router-dom";
 
+//bootstrap crap
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { LinkContainer } from 'react-router-bootstrap'
+
 export default function NavBar(props) {
   //search function
   //takes input field and appends it to API url
@@ -43,55 +51,83 @@ export default function NavBar(props) {
   if(props.authState){
     return (
         <div>
-            <ul className='navbar'>
-    
-                <Link to='/'>
-                    <li className='nav'>Home</li>
-                </Link>
+    <Navbar bg="light" expand="lg">
+      <Container fluid>
+        <Navbar.Brand>BarHops</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '150px' }}
+            navbarScroll
+          >
+            <LinkContainer to='/'>
+                <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
 
-                <Link to='/profile'>
-                    <li className='nav'>Profile</li>
-                </Link>
-    
-                <Link onClick={props.handleLogout} to='/login'>
-                    <li className='nav'>Logout</li>
-                </Link>
-    
-                <li className='nav' id='search'>
-                    <form onSubmit={handleSubmit}  >
-                        <input type='text' placeholder='State, City, ZipCode' name='search' onChange={handleChange}></input>
-                        <button type='submit' hidden>Search</button>
-                    </form>
-                </li>
-    
-            </ul>
+            <LinkContainer to='/profile'>
+                <Nav.Link>Profile</Nav.Link>
+            </LinkContainer>
+            
+            <LinkContainer to='/login'>
+                <Nav.Link onClick={props.handleLogout}>Logout</Nav.Link>
+            </LinkContainer>
+
+          </Nav>
+          <Form className="d-flex" onSubmit={handleSubmit}>
+            <Form.Control
+              type="text"
+              placeholder="State, City, Zip Code"
+              name="search"
+              aria-label="Search"
+              onChange={handleChange}
+            />
+            <Button variant="outline-warning">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
         </div>
       )
   } else {
     return (
         <div>
-            <ul className='navbar'>
-    
-                <Link to='/'>
-                    <li className='nav'>Home</li>
-                </Link>
-    
-                <Link to='/register'>
-                    <li className='nav'>Register</li>
-                </Link>
-    
-                <Link to='/login'>
-                    <li className='nav'>Login</li>
-                </Link>
-    
-                <li className='nav' id='search'>
-                    <form onSubmit={handleSubmit}  >
-                        <input type='text' placeholder='State, City, ZipCode' name='search' onChange={handleChange}></input>
-                        <button type='submit' hidden>Search</button>
-                    </form>
-                </li>
-    
-            </ul>
+    <Navbar bg="light" expand="lg">
+      <Container fluid>
+        <Navbar.Brand>BarHops</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '150px' }}
+            navbarScroll
+          >
+            <LinkContainer to='/'>
+                <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+
+            <LinkContainer to='/register'>
+                <Nav.Link>Register</Nav.Link>
+            </LinkContainer>
+
+            <LinkContainer to='/login'>
+                <Nav.Link>Login</Nav.Link>
+            </LinkContainer>
+
+          </Nav>
+          <Form className="d-flex" onSubmit={handleSubmit}>
+            <Form.Control
+              type="text"
+              placeholder="State, City, Zip Code"
+              name="search"
+              aria-label="Search"
+              onChange={handleChange}
+            />
+            <Button variant="outline-warning">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
         </div>
       )
   }

@@ -17,7 +17,8 @@ import Profile from './components/Profile';
 function App() {
 
   const URL = 'https://api.openbrewerydb.org/breweries'
-  const backendURL= 'http://localhost:4000'
+  // const backendURL= 'http://localhost:4000'
+  const backendURL = 'https://barhops-project.herokuapp.com'
 
   const [searchBrews, setSearchBrews] = useState('');
   const [currUser, setCurrUser] = useState()

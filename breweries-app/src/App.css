@@ -1,3 +1,79 @@
 * {
     text-decoration: none;
 }
+
+.card-group{
+    padding-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+hr{
+    padding-bottom: 30px;
+}
+
+.random-list-title{
+    display: flex;
+    justify-content: end;
+    padding-right: 50px;
+}
+
+.random-list{
+    margin-left: 50px;
+    margin-right:50px
+}
+
+.generic-title{
+    padding-top: 30px;
+    padding-left: 50px;
+}
+
+.why-beer{
+    font-size: 25px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 80px;
+}
+
+.editorial{
+    display: flex;
+    justify-content: space-around;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.editorial-title{
+    padding-top: 50px;
+    padding-bottom: 45px;
+    text-align: center;
+}
+
+.editorial p{
+    font-size: 24px;
+    text-align: justify;
+    padding-right: 40px;
+}
+
+.editorial img{
+    max-width: 40%;
+    max-height: 40%;
+}
+
+.about-beer-title{
+    padding-top: 50px;
+    padding-bottom: 45px;
+    text-align: center;
+}
+
+.about-beer-general{
+    font-size: 24px;
+    text-align: justify;
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.accordion-beers{
+    padding-bottom:150px;
+    padding-left: 200px;
+    padding-right: 200px;
+}

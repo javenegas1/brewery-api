@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useParams, useNavigate, json } from 'react-router-dom'
 import { getUserToken } from '../storage/authToken'
+import Button from 'react-bootstrap/Button';
 
 export default function BreweryPage(props) {
 
@@ -178,7 +179,8 @@ export default function BreweryPage(props) {
           onChange={handleChange}
           value={newComment.time}
           />
-        <button onClick={handleComment} >Comment</button>
+        {/* <button onClick={handleComment} >Comment</button> */}
+        <Button variant='warning' onClick={handleComment}>Comment</Button>
         </div>
 
       <div>
