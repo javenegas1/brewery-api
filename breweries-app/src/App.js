@@ -72,8 +72,6 @@ function App() {
   }
 
   const handleLogout = () => {
-    console.log(currUser)
-    console.log(authState)
     clearUserToken();
     setCurrUser(null);
     setAuthState(false);
@@ -95,7 +93,7 @@ function App() {
         <Route path='/:id' element={<BreweryPage URL={URL} backendURL={backendURL} currUser={currUser}/>} />
         <Route path='/register' element={<Register handleRegister={handleRegister}/>} />
         <Route path='/login' element={<Login handleLogin={handleLogin}/>} />
-        <Route path='/profile' element={<Profile backendURL={backendURL} currUser={currUser} authState={authState}/>} />
+        <Route path='/profile' element={<Profile backendURL={backendURL} currUser={currUser} authState={authState} handleLogout={handleLogout}/>} />
 
 
       </Routes>

@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { getUserToken } from '../storage/authToken'
-import { Link } from "react-router-dom";
+import { getUserToken, clearUserToken } from '../storage/authToken'
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Profile(props) {
     const [profile, setProfile] = useState(null)
     const [userComments, setUserComments] = useState([])
+    const navigate = useNavigate()
 
     //fetch basic profile details
     const getProfile = async () => {
@@ -26,6 +27,25 @@ export default function Profile(props) {
       }
     
   useEffect(() => {getProfile()}, []);
+
+  //------------------------------------------------------>
+  //delete user profile
+  const deleteProfile = async () => {
+    try{
+      const options = {
+        method: "DELETE",
+        headers: { Authorization: `bearer ${getUserToken()}` },
+      };
+      const res = await fetch(props.backendURL+`/main/profile/delete`, options)
+      const deletedProfile = await res.json()
+      console.log(deletedProfile)
+      props.handleLogout()
+      navigate('/')
+    } catch(error){
+      console.log(error)
+    }
+  }
+  //------------------------------------------------------>
   
   //fetch user comments made on other pages
   const getComments = async () => {
@@ -60,6 +80,9 @@ useEffect(() => {getComments()}, []);
       <h3>{profile.username}</h3>
       <div>
         <span>email:</span> {profile.email}
+      </div>
+      <div>
+      <button onClick={deleteProfile}>Don't Go!</button>
       </div>
       <hr></hr>
       <div>
