@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lexend+Deca&family=Ubuntu:ital@1&display=swap');
+
 * {
     text-decoration: none;
+}
+
+.company-name{
+    font-family:'Ubuntu', 'helvetica';
 }
 
 .card-group{
@@ -120,4 +126,12 @@ hr{
 
 .comment-list span{
     font-size: 13px;
+}
+
+.profile-header{
+    padding-top: 30pxs;
+}
+
+.user-comments{
+    padding-top: 25px;
 }

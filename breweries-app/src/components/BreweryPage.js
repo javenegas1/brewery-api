@@ -223,8 +223,6 @@ export default function BreweryPage(props) {
       </div>
       </Form>
 
-
-
       <ListGroup as="ol" className='comment-list'>
       {breweryComments.map((oneComment) => {
             return(

@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react'
 import { getUserToken, clearUserToken } from '../storage/authToken'
 import { Link, useNavigate } from "react-router-dom";
 
+//bootstrap
+import { LinkContainer } from 'react-router-bootstrap'
+import ListGroup from 'react-bootstrap/ListGroup';
+
 export default function Profile(props) {
     const [profile, setProfile] = useState(null)
     const [userComments, setUserComments] = useState([])
@@ -76,8 +80,8 @@ useEffect(() => {getComments()}, []);
   }
 
   return (
-    <div>Profile
-      <h3>{profile.username}</h3>
+    <div>
+      <h3 className='profile-header'>{profile.username}'s Profile</h3>
       <div>
         <span>email:</span> {profile.email}
       </div>
@@ -87,24 +91,39 @@ useEffect(() => {getComments()}, []);
       <hr></hr>
       <div>
         <h3>Favorites</h3>
-      {profile.favorites.map((oneFavorite) => {
+
+      <ListGroup as="ol" numbered className='favorites-list'>
+            {profile.favorites.map((oneFavorite) => {
             return(
-                <Link to={`/${oneFavorite}`}>
-                    <li>{oneFavorite.split('-').join(' ')}</li>
-                </Link>
+              <LinkContainer to={`/${oneFavorite}`}>
+                <ListGroup.Item action variant="secondary" as="li">{oneFavorite.split('-').join(' ')}</ListGroup.Item>  
+              </LinkContainer>
             )
         })}
-      </div>
-      <div>
+        </ListGroup>
+        </div>
+
+      <div className='user-comments'>
       <h3>Comments you've posted!</h3>
+
+      <ListGroup as="ol" className='comment-list'>
       {userComments.map((oneComment) => {
             return(
-                <Link to={`/${oneComment.brewery}`}>
-                    <li>{oneComment.comment} on <span>{oneComment.brewery.split('-').join(' ')}</span></li>
-                </Link>
+            <LinkContainer to={`/${oneComment.brewery}`}>
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between align-items-start"
+            >
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">{oneComment.comment}</div>
+                <span>posted on {oneComment.brewery.split('-').join(' ')}</span>
+              </div>
+            </ListGroup.Item>
+            </LinkContainer>
             )
-        })}
-      </div>
+        }).reverse()}
+    </ListGroup>
+    </div>
     </div>
   )
 }
