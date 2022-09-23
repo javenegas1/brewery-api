@@ -123,7 +123,7 @@ export default function NavBar(props) {
               aria-label="Search"
               onChange={handleChange}
             />
-            <Button variant="outline-warning">Search</Button>
+            <Button variant="outline-warning" hidden >Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

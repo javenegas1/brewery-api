@@ -1,6 +1,11 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
+//bootstrap
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 export default function Register({handleRegister}) {
 
   const [newUser, setNewUser] = useState({ username: "", email: "", password: "" });
@@ -24,41 +29,32 @@ export default function Register({handleRegister}) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-    <label>
-      <span>Username</span>
-      <input
-        type="text"
-        required
-        name="username"
-        placeholder="Enter your username"
-        onChange={handleChange}
-        value={newUser.username}
-      />
-    </label>
-    <label>
-      <span>Email</span>
-      <input
-        type="text"
-        required
-        name="email"
-        placeholder="a@a"
-        onChange={handleChange}
-        value={newUser.email}
-      />
-    </label>
-    <label>
-      <span>Password</span>
-      <input
-        type="password"
-        required
-        name="password"
-        placeholder="Enter your password"
-        onChange={handleChange}
-        value={newUser.password}
-      />
-    </label>
-    <input type="submit"/>
-  </form>
+    <div>
+  
+  <div className='register-page'>
+  <img src='https://imgur.com/mMV0e25.jpg'/>
+  <Form onSubmit={handleSubmit} className='register-form'>
+    <label className='register-title'>Register</label>
+    <FloatingLabel controlId="floatingInput" label="Username">
+        <Form.Control className='username' type="text" placeholder="Username" name='username' onChange={handleChange} value={newUser.username}/>
+      </FloatingLabel>
+    <FloatingLabel
+        controlId="floatingInput"
+        label="Email address"
+        className="mb-3"
+      >
+        <Form.Control type="email" placeholder="name@example.com" name='email' onChange={handleChange} value={newUser.email}/>
+      </FloatingLabel>
+      <FloatingLabel controlId="floatingPassword" label="Password">
+        <Form.Control type="password" placeholder="Password" name='password' onChange={handleChange} value={newUser.password}/>
+      </FloatingLabel>
+      <hr></hr>
+      <Button className='register-btn' variant="danger" type="submit">
+        Submit
+      </Button>
+    </Form>
+  </div>
+
+  </div>
   )
 }
