@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useParams, useNavigate, json } from 'react-router-dom'
 import { getUserToken } from '../storage/authToken'
 
@@ -14,7 +14,6 @@ export default function BreweryPage(props) {
     try{
         const res = await fetch(props.URL+`/${params.id}`)
         const brewery = await res.json()
-        console.log(brewery)
         setThisBrewery(brewery)
     } catch (error) {
         console.log(error)
@@ -41,7 +40,6 @@ export default function BreweryPage(props) {
       const response = await fetch(props.backendURL+'/main/favorites', options)
       const parsedResponse = await response.json()
       console.log(parsedResponse)
-      console.log(props.currUser)
     }catch(err){
       console.log(err)
     }
@@ -54,8 +52,6 @@ export default function BreweryPage(props) {
 
   function handleChange(e) {
     setNewComment({...newComment, [e.target.name]: e.target.value});
-    console.log(newComment)
-    console.log(determineDate())
   }
 
   async function handleComment(e) {
@@ -94,7 +90,6 @@ export default function BreweryPage(props) {
               method: 'GET',
             }
           const res = await fetch(props.backendURL+`/main/brewery-comments/${paramId}`, options)
-          console.log(res)
           const commentsList = await res.json()
           console.log(commentsList)
           setBreweryComments(commentsList)
@@ -102,7 +97,7 @@ export default function BreweryPage(props) {
           console.log(error)
       }
     }
-  
+
   useEffect(() => {getBreweryComments()}, []);
 
   //------------------------------------------------------>
