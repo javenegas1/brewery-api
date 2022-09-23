@@ -43,7 +43,7 @@ export default function NavBar(props) {
   if(props.authState){
     return (
         <div>
-            <ul className='navbar navbar-expand-lg bg-light'>
+            <ul className='navbar'>
     
                 <Link to='/'>
                     <li className='nav'>Home</li>

@@ -50,14 +50,17 @@ export default function BreweryPage(props) {
   //------------------------------------------------------>
   //form functions for comments section
   
-  const[newComment, setNewComment] = useState({ brewery: params.id, comment:'' })
+  const[newComment, setNewComment] = useState({ brewery: params.id, comment:'', time: '' })
 
   function handleChange(e) {
     setNewComment({...newComment, [e.target.name]: e.target.value});
+    console.log(newComment)
+    console.log(determineDate())
   }
 
   async function handleComment(e) {
     e.preventDefault();
+    newComment.time = determineDate()
     let info = {
       comment: newComment,
     }
@@ -118,6 +121,39 @@ export default function BreweryPage(props) {
     }
   }
 
+//------------------------------------------------------>
+//date for comments
+  const determineDate = () => {
+    let commentDate = new Date()
+    
+    let day = commentDate.getDate()
+    let month = commentDate.getMonth()
+    let year = commentDate.getFullYear()
+    let hour = commentDate.getHours()
+    
+    if(month === 0) month = 'Jan.'
+    else if(month === 1) month = 'Feb.'
+    else if(month === 2) month = 'March'
+    else if(month === 3) month = 'April'
+    else if(month === 4) month = 'May'
+    else if(month === 5) month = 'June'
+    else if(month === 6) month = 'July'
+    else if(month === 7) month = 'Aug.'
+    else if(month === 8) month = 'Sept.'
+    else if(month === 9) month = 'Oct.'
+    else if(month === 10) month = 'Nov.'
+    else if(month === 11) month = 'Dec.'
+    
+    if(hour>12){
+      hour = `${hour-12}:00 pm`
+    } else {
+      hour = `${hour}:00 am`
+    }
+    
+     return `${month} ${day}, ${year} at around ${hour}`
+  }
+
+
   if (!thisBrewery || !breweryComments) {
     return <p>Loading ...</p>
   }
@@ -141,6 +177,12 @@ export default function BreweryPage(props) {
             onChange={handleChange}
             value={newComment.comment}
         />
+          <input 
+          type='hidden'
+          name='time'
+          onChange={handleChange}
+          value={newComment.time}
+          />
         <button onClick={handleComment} >Comment</button>
         </div>
 
@@ -149,7 +191,7 @@ export default function BreweryPage(props) {
         {breweryComments.map((oneComment) => {
             return(
                   <div>
-                    <li>{oneComment.comment} <span>by {oneComment.username}</span></li>
+                    <li>{oneComment.comment} <span>by {oneComment.username}</span> - <span>{ oneComment.time }</span></li>
                     {/* <button onClick={handleDeleteComment(oneComment._id)} >Delete Comment</button> */}
                   </div>
             )
