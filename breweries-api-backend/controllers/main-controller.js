@@ -15,10 +15,10 @@ router.get("/profile", requireToken, async (req, res) => {
     try{
         const thisUser = await User.findOne({username: req.user.username})
         let jsonUser = JSON.stringify(thisUser)
-        console.log(jsonUser)
+        // console.log(jsonUser)
 
         const userComments = await Comment.find({username: req.user.username})
-        console.log(userComments)
+        // console.log(userComments)
 
         res.json(thisUser)
     } catch (error){
@@ -76,7 +76,7 @@ router.post('/comment', requireToken, async (req, res) => {
 router.get("/user-comments", requireToken, async (req, res) => {
     try{
         const userComments = await Comment.find({username: req.user.username})
-        console.log(userComments)
+        // console.log(userComments)
 
         res.json(userComments)
     } catch (error){
@@ -88,8 +88,8 @@ router.get("/user-comments", requireToken, async (req, res) => {
 router.get("/brewery-comments/:id", async (req, res) => {
     try{
         const breweryComments = await Comment.find({brewery: req.params.id})
-        console.log(breweryComments)
-        console.log(req.params.id)
+        // console.log(breweryComments)
+        // console.log(req.params.id)
         res.json(breweryComments)
     } catch (error){
         res.status(400).json(error)
