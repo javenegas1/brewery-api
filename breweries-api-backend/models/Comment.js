@@ -12,7 +12,8 @@ const commentSchema = new mongoose.Schema({
     comment: {
         type: String,
         required: true,
-    },
+    }, 
+    time: String
 }, {
     timestamps: true,
     toJSON: {

@@ -61,8 +61,10 @@ router.post('/comment', requireToken, async (req, res) => {
         const newComment = await Comment.create({
             username: thisUser.username,
             brewery: req.body.comment.brewery,
-            comment: req.body.comment.comment
+            comment: req.body.comment.comment,
+            time: req.body.comment.time
         })
+        console.log(req.body)
         console.log(newComment)
         res.status(200)
     } catch(error) {
@@ -95,15 +97,15 @@ router.get("/brewery-comments/:id", async (req, res) => {
   });
 
 //edit and delete comments
-router.delete('/comment/:id', requireToken, async (req, res) => {
-    try{
-        const thisComment = await Comment.findById(req.params.id)
-        if(req.user.username == thisComment.username){
-            res.json(await Comment.findByIdAndDelete(req.params.id))
-        }
-    }catch (error) {
-        res.status(400).json(error)
-    }
-})
+// router.delete('/comment/:id', requireToken, async (req, res) => {
+//     try{
+//         const thisComment = await Comment.findById(req.params.id)
+//         if(req.user.username == thisComment.username){
+//             res.json(await Comment.findByIdAndDelete(req.params.id))
+//         }
+//     }catch (error) {
+//         res.status(400).json(error)
+//     }
+// })
 
 module.exports = router;
