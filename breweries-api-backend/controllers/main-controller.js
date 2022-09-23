@@ -26,6 +26,17 @@ router.get("/profile", requireToken, async (req, res) => {
     }
   });
 
+router.delete('/profile/delete', requireToken, async (req, res) => {
+    try{
+        res.json(
+            await User.findOneAndRemove({username: req.user.username}),
+            await Comment.updateMany({username:req.user.username},{username: 'deleted user'})
+                )
+    } catch (error){
+        res.status(400).json(error)
+    }
+})
+
 //favorite
 router.post('/favorites', requireToken, async(req, res) => {
     try{
