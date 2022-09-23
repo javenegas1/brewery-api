@@ -1,7 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import { useParams, useNavigate, json } from 'react-router-dom'
 import { getUserToken } from '../storage/authToken'
+
+//bootstrap
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
+import Form from 'react-bootstrap/Form';
+import Badge from 'react-bootstrap/Badge';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export default function BreweryPage(props) {
 
@@ -156,44 +163,83 @@ export default function BreweryPage(props) {
   
   return (
     <div>
-        <ul>
-            <li>{thisBrewery.name}</li>
-            <li>{thisBrewery.street}</li>
-            <li>{thisBrewery.city}, {thisBrewery.state}</li>
-            <li>{thisBrewery.website_url}</li>
-            <li>{thisBrewery.phone}</li>
-        </ul>
-        <button onClick={handleFavorites}>Favorite</button>
 
-        <div>
-          <input
-            type="text"
-            name="comment"
-            placeholder="say something..."
-            onChange={handleChange}
-            value={newComment.comment}
-        />
-          <input 
-          type='hidden'
-          name='time'
-          onChange={handleChange}
-          value={newComment.time}
-          />
-        {/* <button onClick={handleComment} >Comment</button> */}
-        <Button variant='warning' onClick={handleComment}>Comment</Button>
-        </div>
+    <Card>
+      <Card.Header>Interested in this brewery?</Card.Header>
+      <Card.Body>
+        <Card.Title>{thisBrewery.name}</Card.Title>
+        <Card.Text>
+          Take a look at their information below...
+          <Table striped bordered hover>
+      <tbody>
+        <tr>
+          <td>Address</td>
+          <td>{thisBrewery.street}</td>
 
+        </tr>
+        <tr>
+          <td>City, State</td>
+          <td>{thisBrewery.city}, {thisBrewery.state}</td>
+
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>{thisBrewery.phone}</td>
+        </tr>
+        <tr>
+          <td>Website</td>
+          <td>{thisBrewery.website_url}</td>
+        </tr>
+      </tbody>
+    </Table>
+        </Card.Text>
+        <Button onClick={handleFavorites} variant="outline-success">Favorite</Button>
+      </Card.Body>
+    </Card>
+
+    <hr></hr>
+
+    <Form className='comment-form'>
+    <Form.Label htmlFor="inputPassword5">Comment Something!</Form.Label>
+      <Form.Control
+        type="text"
+        id="inputPassword5"
+        aria-describedby="passwordHelpBlock"
+        name='comment'
+        onChange={handleChange}
+        value={newComment.comment}
+      />
+      <Form.Control
+        type="hidden"
+        name='time'
+        onChange={handleChange}
+        value={newComment.time}
+      />
+      <Form.Text id="passwordHelpBlock" muted>
+        Please be respecful with anything you post
+      </Form.Text>
       <div>
-      <h3>Comments Section</h3>
-        {breweryComments.map((oneComment) => {
+      <Button variant='outline-warning' onClick={handleComment}>Comment</Button>
+      </div>
+      </Form>
+
+
+
+      <ListGroup as="ol" className='comment-list'>
+      {breweryComments.map((oneComment) => {
             return(
-                  <div>
-                    <li>{oneComment.comment} <span>by {oneComment.username}</span> - <span>{ oneComment.time }</span></li>
-                    {/* <button onClick={handleDeleteComment(oneComment._id)} >Delete Comment</button> */}
-                  </div>
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between align-items-start"
+            >
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">{oneComment.comment}</div>
+                <span>by {oneComment.username} - { oneComment.time }</span>
+              </div>
+            </ListGroup.Item>
             )
         }).reverse()}
-      </div>
+    </ListGroup>
 
     </div>
   )

@@ -93,7 +93,7 @@ export default function Home(props) {
     {randomList.map((oneRandom) => {
             return(
               <LinkContainer to={`/${oneRandom.id}`}>
-                <ListGroup.Item as="li">{oneRandom.name} - in {oneRandom.city}, {oneRandom.state}</ListGroup.Item>  
+                <ListGroup.Item action variant="secondary" as="li">{oneRandom.name} - in {oneRandom.city}, {oneRandom.state}</ListGroup.Item>  
               </LinkContainer>
             )
         })}

@@ -102,3 +102,22 @@ hr{
    font-size: 26px;
    font-weight: bold;
 }
+
+.search-count{
+    font-size: 15px;
+    padding-top: 30px;
+}
+
+.comment-form{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.comment-list{
+    padding-top:32px;
+    padding-bottom: 70px;
+}
+
+.comment-list span{
+    font-size: 13px;
+}
