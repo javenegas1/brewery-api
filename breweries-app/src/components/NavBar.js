@@ -94,7 +94,7 @@ export default function NavBar(props) {
         <div>
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand>BarHops</Navbar.Brand>
+        <Navbar.Brand className='company-name'>BarHops</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

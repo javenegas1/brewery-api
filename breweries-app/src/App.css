@@ -114,6 +114,24 @@ hr{
     padding-top: 30px;
 }
 
+#phone{
+    text-decoration: none;
+    color: black;
+}
+
+#phone:hover{
+    color: rgb(153, 131, 21)
+}
+
+#website{
+    text-decoration: none;
+    color: black;
+}
+
+#website:hover{
+    color: rgb(153, 131, 21)
+}
+
 .comment-form{
     padding-left: 30px;
     padding-right: 30px;

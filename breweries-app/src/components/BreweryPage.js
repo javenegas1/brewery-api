@@ -184,11 +184,11 @@ export default function BreweryPage(props) {
         </tr>
         <tr>
           <td>Phone</td>
-          <td>{thisBrewery.phone}</td>
+          <td><a href={`tel:${thisBrewery.phone}`} id='phone' >{thisBrewery.phone}</a></td>
         </tr>
         <tr>
           <td>Website</td>
-          <td>{thisBrewery.website_url}</td>
+          <td><a href={`${thisBrewery.website_url}`} id='website' >{thisBrewery.website_url}</a></td>
         </tr>
       </tbody>
     </Table>
